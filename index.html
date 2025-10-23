@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bible Navigation</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="slider-container" id="container">
+      <div class="letter-display" id="letterDisplay">
+        <div class="testament">Old Testament</div>
+        <div class="letter">Law</div>
+        <div class="book-count">Book 1 of 66</div>
+        <div class="chapter-count">50 chapters</div>
+        <div class="books">
+          <span class="book-item active">Genesis</span> <span class="book-item">Exodus</span>
+          <span class="book-item">Leviticus</span> <span class="book-item">Numbers</span>
+          <span class="book-item">Deuteronomy</span>
+        </div>
+        <div class="summary">God creates the world and chooses Abraham's family to bring blessing to all nations.</div>
+      </div>
+      <div class="book-count-display" id="bookCountDisplay">Book 1 of 66</div>
+      <div class="slider-wrapper">
+        <input type="range" id="slider" min="0" max="65" value="0" />
+      </div>
+      <div class="alphabet-nav" id="alphabetNav">
+        <div class="alphabet-row">
+          <button class="alphabet-letter" data-letter="A">A</button>
+          <button class="alphabet-letter" data-letter="C">C</button>
+          <button class="alphabet-letter" data-letter="D">D</button>
+          <button class="alphabet-letter" data-letter="E">E</button>
+          <button class="alphabet-letter" data-letter="G">G</button>
+          <button class="alphabet-letter" data-letter="H">H</button>
+          <button class="alphabet-letter" data-letter="I">I</button>
+          <button class="alphabet-letter" data-letter="J">J</button>
+          <button class="alphabet-letter" data-letter="K">K</button>
+        </div>
+        <div class="alphabet-row">
+          <button class="alphabet-letter" data-letter="L">L</button>
+          <button class="alphabet-letter" data-letter="M">M</button>
+          <button class="alphabet-letter" data-letter="N">N</button>
+          <button class="alphabet-letter" data-letter="O">O</button>
+          <button class="alphabet-letter" data-letter="P">P</button>
+          <button class="alphabet-letter" data-letter="R">R</button>
+          <button class="alphabet-letter" data-letter="S">S</button>
+          <button class="alphabet-letter" data-letter="T">T</button>
+          <button class="alphabet-letter" data-letter="Z">Z</button>
+        </div>
+      </div>
+      <div class="swipe-hint" id="swipeHint">Swipe or use slider</div>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

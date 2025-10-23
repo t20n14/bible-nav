@@ -1,0 +1,586 @@
+/* ============================================================================
+   CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ============================================================================ */
+
+:root {
+  /* Color Palette */
+  --color-primary: gold;
+  --color-accent-blue: #88ccff;
+  --color-accent-blue-hover: #aaddff;
+  --color-white: white;
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #ccc;
+  --color-text-muted: #c0c0c0;
+  --color-text-dimmed: #b0b0b0;
+  --color-error: #ff6b6b;
+  --color-bg-dark-primary: #2c2c2c;
+  --color-bg-dark-secondary: #1a1a1a;
+  --color-slider-track: #d0d0d0;
+  --color-slider-thumb: #b0b0b0;
+  --color-slider-thumb-hover: #c0c0c0;
+
+  /* Typography */
+  --font-family-serif: Georgia, "Times New Roman", serif;
+  --font-size-xs: 9px;
+  --font-size-sm: 10px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 16px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 72px;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --line-height-base: 1.8;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 5px;
+  --spacing-md: 8px;
+  --spacing-lg: 10px;
+  --spacing-xl: 12px;
+  --spacing-2xl: 15px;
+  --spacing-3xl: 20px;
+  --spacing-4xl: 30px;
+  --spacing-5xl: 35px;
+  --spacing-6xl: 40px;
+  --spacing-7xl: 70px;
+
+  /* Opacity Levels */
+  --opacity-disabled: 0.3;
+  --opacity-muted: 0.4;
+  --opacity-medium: 0.5;
+  --opacity-accessible: 0.6;
+  --opacity-hover: 0.7;
+  --opacity-high: 0.8;
+  --opacity-active: 0.9;
+  --opacity-full: 1;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-smooth: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows & Effects */
+  --border-divider: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* Layout */
+  --container-max-width: 600px;
+  --content-max-width: 700px;
+  --slider-width: 300px;
+  --slider-thumb-size: 25px;
+  --alphabet-button-width: 28px;
+}
+
+/* ============================================================================
+   BASE & RESET STYLES
+   ============================================================================ */
+
+body {
+  font-family: var(--font-family-serif);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, var(--color-bg-dark-primary) 0%, var(--color-bg-dark-secondary) 100%);
+  transition: background var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================================================
+   LAYOUT - MAIN CONTAINER
+   ============================================================================ */
+
+.slider-container {
+  padding: var(--spacing-3xl) var(--spacing-6xl);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+
+.slider-container:active {
+  cursor: grabbing;
+}
+
+/* ============================================================================
+   COMPONENTS - DISPLAY & TEXT HIERARCHY
+   ============================================================================ */
+
+.letter-display {
+  font-size: var(--font-size-2xl);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-4xl);
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  line-height: var(--line-height-base);
+  position: absolute;
+  top: 15%;
+  width: 95%;
+}
+
+.letter-display.reading-mode {
+  top: 0;
+  margin-bottom: 0;
+}
+
+/* Small uppercase labels - shared styles */
+.testament,
+.letter,
+.book-count,
+.chapter-count,
+.chapter-info {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-light);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.testament {
+  color: var(--color-primary);
+  opacity: var(--opacity-medium);
+  margin-bottom: var(--spacing-sm);
+}
+
+.letter {
+  margin-bottom: var(--spacing-lg);
+  opacity: var(--opacity-accessible);
+}
+
+.book-count {
+  opacity: var(--opacity-medium);
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.chapter-count {
+  opacity: var(--opacity-medium);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.chapter-info {
+  opacity: var(--opacity-medium);
+  margin-top: var(--spacing-lg);
+}
+
+.summary {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-2xl);
+  max-width: var(--container-max-width);
+  font-style: italic;
+  line-height: var(--line-height-base);
+  padding: 0 var(--spacing-5xl);
+}
+
+.chapter-title {
+  font-size: 16px;
+  padding-bottom: var(--spacing-2xl);
+  padding-top: var(--spacing-2xl);
+  opacity: var(--opacity-active);
+  z-index: 1;
+}
+
+.mode-reading .chapter-title {
+  position: fixed;
+  width: 120%;
+}
+
+.chapter-number {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-light);
+  opacity: var(--opacity-active);
+  margin-top: var(--spacing-3xl);
+}
+
+/* ============================================================================
+   COMPONENTS - BOOKS LIST
+   ============================================================================ */
+
+.books {
+  font-size: var(--font-size-xl);
+  color: var(--color-white);
+  max-width: var(--container-max-width);
+  margin-bottom: var(--spacing-lg);
+  text-wrap: balance;
+  padding: 0 var(--spacing-lg);
+}
+
+.book-item {
+  opacity: var(--opacity-muted);
+  transition: opacity var(--transition-normal);
+  white-space: nowrap;
+  padding-left: var(--spacing-xs);
+  padding-right: var(--spacing-xs);
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  margin: 0;
+}
+
+.book-item:hover {
+  opacity: var(--opacity-hover);
+}
+
+.book-item.active {
+  opacity: var(--opacity-full);
+}
+
+.book-item.active:hover {
+  opacity: var(--opacity-full);
+}
+
+.book-group {
+  display: block;
+}
+
+.book-separator {
+  opacity: var(--opacity-disabled);
+  font-weight: var(--font-weight-light);
+}
+
+.book-base-name {
+  opacity: var(--opacity-muted);
+  transition: opacity var(--transition-normal);
+}
+
+.book-base-name.active {
+  opacity: var(--opacity-full);
+}
+
+/* ============================================================================
+   COMPONENTS - UI HINTS & OVERLAYS
+   ============================================================================ */
+
+.swipe-hint {
+  position: fixed;
+  top: var(--spacing-4xl);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-white);
+  font-size: var(--font-size-md);
+  opacity: var(--opacity-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-light);
+  z-index: 10;
+  pointer-events: none;
+  width: 100%;
+  white-space: pre-line;
+  display: none;
+}
+
+.book-count-display {
+  position: fixed;
+  bottom: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-white);
+  font-size: var(--font-size-md);
+  opacity: var(--opacity-medium);
+  font-weight: var(--font-weight-light);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ============================================================================
+   COMPONENTS - SLIDER CONTROL
+   ============================================================================ */
+
+.slider-wrapper {
+  position: fixed;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+input[type="range"] {
+  width: var(--slider-width);
+  height: 2px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--color-slider-track);
+  outline: none;
+  border-radius: 5px;
+  pointer-events: auto;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
+  background: var(--color-slider-thumb);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--color-slider-thumb-hover);
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
+  background: var(--color-slider-thumb);
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+  transition: var(--transition-fast);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: var(--color-slider-thumb-hover);
+  transform: scale(1.2);
+}
+
+/* ============================================================================
+   COMPONENTS - ALPHABET NAVIGATION
+   ============================================================================ */
+
+.alphabet-nav {
+  position: fixed;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  width: 90%;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.alphabet-row {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+.alphabet-letter {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
+  opacity: var(--opacity-muted);
+  cursor: pointer;
+  padding: var(--spacing-xs) 0;
+  width: var(--alphabet-button-width);
+  text-align: center;
+  transition: opacity var(--transition-fast);
+  font-family: var(--font-family-serif);
+  letter-spacing: 0.5px;
+}
+
+.alphabet-letter:hover {
+  opacity: var(--opacity-hover);
+}
+
+.alphabet-letter.active {
+  opacity: var(--opacity-active);
+}
+
+/* ============================================================================
+   COMPONENTS - CHAPTER CONTENT & VERSES
+   ============================================================================ */
+
+.chapter-content {
+  text-align: left;
+  line-height: var(--line-height-base);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-3xl);
+  padding-top: var(--spacing-7xl);
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.chapter-heading {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-primary);
+  opacity: var(--opacity-medium);
+  margin-bottom: var(--spacing-lg);
+  margin-top: var(--spacing-5xl);
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.verse {
+  display: inline;
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+}
+
+.verse-number {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  opacity: var(--opacity-accessible);
+  vertical-align: super;
+  font-weight: var(--font-weight-light);
+  margin-right: 2px;
+}
+
+.verse-text {
+  color: var(--color-text-primary);
+  font-style: normal;
+}
+
+.footnote-ref {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent-blue);
+  opacity: var(--opacity-accessible);
+  margin-left: 1px;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.footnote-ref:hover {
+  opacity: var(--opacity-full);
+  color: var(--color-accent-blue-hover);
+}
+
+/* ============================================================================
+   COMPONENTS - LOADING & ERROR STATES
+   ============================================================================ */
+
+.loading-spinner {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  padding: 40px 0;
+  font-style: italic;
+  opacity: var(--opacity-hover);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: var(--opacity-muted);
+  }
+  50% {
+    opacity: var(--opacity-high);
+  }
+}
+
+.error-message {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--color-error);
+  padding: var(--spacing-3xl);
+  font-style: italic;
+  line-height: var(--line-height-base);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ============================================================================
+   COMPONENTS - FOOTNOTES
+   ============================================================================ */
+
+.footnotes-section {
+  margin-bottom: 100px;
+  margin-top: var(--spacing-6xl);
+  padding-top: var(--spacing-3xl);
+  border-top: var(--border-divider);
+}
+
+.footnotes-divider {
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.3), transparent);
+  margin: 0 auto var(--spacing-2xl);
+}
+
+.footnotes-title {
+  font-size: var(--font-size-base);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+  opacity: var(--opacity-accessible);
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  font-weight: var(--font-weight-light);
+}
+
+.footnote-item {
+  font-size: 13px;
+  line-height: var(--line-height-base);
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-text-dimmed);
+  padding-left: var(--spacing-lg);
+  text-align: left;
+}
+
+.footnote-caller {
+  color: var(--color-accent-blue);
+  opacity: var(--opacity-high);
+  font-weight: var(--font-weight-semibold);
+  margin-right: var(--spacing-sm);
+}
+
+.footnote-reference {
+  color: var(--color-primary);
+  opacity: var(--opacity-accessible);
+  font-size: var(--font-size-base);
+  margin-right: var(--spacing-md);
+}
+
+.footnote-text {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ============================================================================
+   STATE MODIFIERS - READING MODE
+   ============================================================================ */
+
+.mode-reading {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.reading-mode {
+  top: 0 !important;
+}
+
+/* Remove line breaks after chapter headings */
+.chapter-heading + br {
+  line-height: 0;
+  display: none;
+}
