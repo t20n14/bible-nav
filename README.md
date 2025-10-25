@@ -4,17 +4,18 @@
 
 ## How to Navigate
 
-- Drag the slider at the bottom to select any book/chapter
+- 🎚️ Drag the slider or ↔️ swipe left / right to move between books / chapters
 
-- Swipe left/right to browse through books/chapters/move between chapters while reading
+- ▶️ Tap anywhere to advance
 
-- Tap anywhere to advance
-- Tap left side of screen to go to previous chapter and right side of screen to go to next chapter while reading
-- Tap on any book name to select it and view its chapters
-- Tap alphabet letters (A-Z) to jump to books starting with that letter (tap multiple times to cycle through books
+- ⏮️ Double-tap to go back
+
+- 📖 Tap on book name to select it and view its chapters
+
+- 🔤 Tap alphabet letters to jump to books starting with that letter (tap multiple times to cycle through books
   with the same letter)
 
-- Double-tap to go back
+- ◀️▶️ Tap left side of screen to go to previous chapter and right side of screen to go to next chapter while reading
 
 ## Links
 
